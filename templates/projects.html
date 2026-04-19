@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sundar</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="terminal">
+<nav>
+<a href="/">home</a>
+<a href="/about">about</a>
+<a href="/projects">projects</a>
+<a href="/certifications">certifications</a>
+<a href="/skills">skills</a>
+<a href="/internship">internship</a>
+<a href="/contact">contact</a>
+</nav>
+<div id="terminal-output"></div>
+<div class="projects-list">
+<div class="project">
+<h3>🔧 Bash Script</h3>
+<p>file manipulation SYstem.</p>
+<p class="tech">Tech: Bash, Shell, Linux</p>
+<p class="status">Status: Completed</p>
+</div>
+<div class="project">
+<h3>🎮 Gyro Cursor Control</h3>
+<p>Innovative project that controls mouse cursor using gyroscope sensor data from mobile devices.</p>
+<p class="tech">Tech: Python, Sensors, GUI, termux, UDP/TCP</p>
+<p class="status">Status: complete </p>
+</div>
+<div class="project">
+<h3>📋 Todo & Calculator</h3>
+<p>Dual-purpose application combining task management and advanced calculation features with clean UI.</p>
+<p class="tech">Tech: java , Flutter developed in both lanuage </p>
+<p class="status">Status: Completed</p>
+</div>
+<div class="project">
+<h3>🌐 Weather Monitoring System</h3>
+<p>Real-time monitoring platform for IoT devices with data visualization and alerts.</p>
+<p class="tech">Tech: IoT sensors, Arduino, MQTT</p>
+<p class="status">Status: Active</p>
+</div>
+<div class="project">
+<h3>📱 Portfolio Website</h3>
+<p>Personal portfolio website showcasing all projects with responsive design and terminal theme.</p>
+<p class="tech">Tech: Flask, HTML, CSS, Python</p>
+<p class="status">Status: complete </p>
+</div>
+</div>
+</div>
+<script src="{{ url_for('static', filename='js/typing.js') }}"></script>
+<script src="{{ url_for('static', filename='js/terminal-bg.js') }}"></script>
+<script src="{{ url_for('static', filename='js/transitions.js') }}"></script>
+<script>
+startTyping(["$ projects","Loading project details..."]);
+</script>
+</body>
+</html>

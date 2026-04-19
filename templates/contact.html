@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Contact</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="terminal">
+<nav>
+<a href="/">home</a>
+<a href="/about">about</a>
+<a href="/projects">projects</a>
+<a href="/certifications">certifications</a>
+<a href="/skills">skills</a>
+<a href="/internship">internship</a>
+<a href="/contact">contact</a>
+</nav>
+
+<div id="terminal-output"></div>
+
+<div style="margin: 20px 0; padding: 15px; border: 1px solid #00ffff; background: rgba(0,255,255,0.05); border-radius: 8px;">
+<h3 style="color: #00ffff; margin: 0 0 15px 0;">📞 Contact Information</h3>
+<p style="color: #00ffff; margin: 8px 0;"><strong>Phone:</strong> 9361439835</p>
+<p style="color: #00ffff; margin: 8px 0;"><strong>Email:</strong> sundarjerryy@gmail.com</p>
+<p style="color: #00ffff; margin: 8px 0;"><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/sundarj23/" style="color: #00ff88; text-decoration: none;">linkedin.com/in/sundarj23</a></p>
+<p style="color: #00ffff; margin: 8px 0;"><strong>GitHub:</strong> <a href="https://github.com/Sundar-JD" style="color: #00ff88; text-decoration: none;">github.com/Sundar-JD</a></p>
+</div>
+
+
+
+</div>
+<script src="{{ url_for('static', filename='js/typing.js') }}"></script>
+<script src="{{ url_for('static', filename='js/terminal-bg.js') }}"></script>
+<script src="{{ url_for('static', filename='js/transitions.js') }}"></script>
+<script>
+startTyping(["$ contact","Contact details above, send message below"]);
+</script>
+</body>
+</html>

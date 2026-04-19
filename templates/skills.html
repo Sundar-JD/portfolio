@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Sundar - Skills</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<div class="terminal">
+<nav>
+<a href="/">home</a>
+<a href="/about">about</a>
+<a href="/projects">projects</a>
+<a href="/certifications">certifications</a>
+<a href="/skills">skills</a>
+<a href="/internship">internship</a>
+<a href="/contact">contact</a>
+</nav>
+<div id="terminal-output"></div>
+<div class="skills-list">
+<div class="skill">
+<h3>🐧 Linux</h3>
+<p>Experienced with Linux operating systems, including system administration, package management, file systems, and command-line operations.</p>
+<div class="proficiency">Proficiency: Intermediate</div>
+</div>
+<div class="skill">
+<h3>📜 Shell Scripts</h3>
+<p>Skilled in writing Bash shell scripts for automation, system tasks, and workflow optimization.</p>
+<div class="proficiency">Proficiency: Intermediate</div>
+</div>
+<div class="skill">
+<h3>⚙️ DevOps</h3>
+<p>Experience with DevOps practices including CI/CD pipelines, containerization (Docker), version control (Git), and infrastructure automation.</p>
+<div class="proficiency">Proficiency: Intermediate</div>
+</div>
+<div class="skill">
+<h3>☕ Java & OOPS</h3>
+<p>Proficient in Java programming with strong understanding of Object-Oriented Programming principles including inheritance, polymorphism, encapsulation, and abstraction.</p>
+<div class="proficiency">Proficiency: Advanced</div>
+</div>
+<div class="skill">
+<h3>🐍 Python</h3>
+<p>Strong programming skills in Python for web development, data analysis, automation, and general-purpose programming.</p>
+<div class="proficiency">Proficiency: Advanced</div>
+</div>
+<div class="skill">
+<h3>📡 IoT</h3>
+<p>Knowledge of Internet of Things fundamentals, sensor integration, Arduino programming, and embedded systems development for connected devices.</p>
+<div class="proficiency">Proficiency: Intermediate</div>
+</div>
+</div>
+</div>
+<script src="{{ url_for('static', filename='js/typing.js') }}"></script>
+<script src="{{ url_for('static', filename='js/terminal-bg.js') }}"></script>
+<script src="{{ url_for('static', filename='js/transitions.js') }}"></script>
+<script>
+startTyping(["$ skills","Loading technical skills..."]);
+</script>
+</body>
+</html>

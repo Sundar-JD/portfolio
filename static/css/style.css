@@ -1,0 +1,295 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --cyan:   #00ffff;
+  --green:  #00ff88;
+  --amber:  #ffaa00;
+  --dim:    rgba(0,255,255,0.08);
+  --border: rgba(0,255,255,0.3);
+  --glow:   rgba(0,255,255,0.15);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: #000;
+  color: var(--cyan);
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 18px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  /* stacking context so z-index on children works against fixed canvases */
+  isolation: isolate;
+}
+
+/* ── Terminal wrapper ── */
+.terminal {
+  position: relative;
+  z-index: 1;
+  width: 92%;
+  max-width: 1100px;
+  margin: 28px auto;
+  padding: 28px 32px;
+  background: rgba(0, 0, 0, 0.60);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow:
+    0 0 0 1px rgba(0,255,255,0.04),
+    0 0 40px rgba(0,255,255,0.07),
+    inset 0 0 80px rgba(0,0,0,0.4);
+  backdrop-filter: blur(6px);
+  min-height: calc(100vh - 56px);
+}
+
+/* Title bar chrome */
+.terminal::before {
+  content: '● ● ●';
+  position: absolute;
+  top: 10px; left: 16px;
+  font-size: 10px;
+  letter-spacing: 5px;
+  color: rgba(0,255,255,0.18);
+  pointer-events: none;
+}
+
+/* Horizontal scan lines (CRT feel) */
+.terminal::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0,0,0,0.06) 3px,
+    rgba(0,0,0,0.06) 4px
+  );
+  border-radius: 6px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Nav ── */
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 22px 0 16px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(0,255,255,0.12);
+  position: relative;
+  z-index: 1;
+}
+
+nav a {
+  color: var(--cyan);
+  text-decoration: none;
+  font-size: 15px;
+  padding: 5px 14px;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  background: var(--dim);
+  letter-spacing: 0.06em;
+  position: relative;
+  overflow: hidden;
+  transition:
+    color       0.28s ease,
+    background  0.28s ease,
+    border-color 0.28s ease,
+    box-shadow  0.28s ease,
+    transform   0.22s cubic-bezier(.34,1.56,.64,1);
+}
+
+nav a::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--cyan);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.24s cubic-bezier(.4,0,.2,1);
+  z-index: -1;
+}
+
+nav a:hover::before { transform: scaleX(1); }
+nav a:hover {
+  color: #000;
+  border-color: var(--cyan);
+  box-shadow: 0 0 16px rgba(0,255,255,0.5);
+  transform: translateY(-2px);
+}
+
+/* ── Terminal output ── */
+#terminal-output {
+  position: relative;
+  z-index: 1;
+  min-height: 56px;
+  line-height: 1.75;
+  margin-bottom: 18px;
+}
+
+/* blinking cursor */
+#terminal-output::after {
+  content: '▋';
+  animation: blink 1.1s step-end infinite;
+  color: var(--cyan);
+  opacity: 0.8;
+}
+@keyframes blink { 0%,100%{opacity:.8} 50%{opacity:0} }
+
+/* ── Cards ── */
+.projects-list, .certifications-list, .skills-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 18px;
+  margin-top: 22px;
+  position: relative;
+  z-index: 1;
+}
+
+.project, .certification, .skill {
+  background: rgba(0,0,0,0.42);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 18px 20px;
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform   0.32s cubic-bezier(.34,1.56,.64,1),
+    box-shadow  0.32s ease,
+    border-color 0.32s ease,
+    background  0.32s ease;
+}
+
+/* Animated corner accent */
+.project::before, .certification::before, .skill::before {
+  content: '';
+  position: absolute;
+  top: -1px; right: -1px;
+  width: 0; height: 0;
+  border-top: 22px solid var(--cyan);
+  border-left: 22px solid transparent;
+  opacity: 0.35;
+  transition: opacity 0.3s ease;
+}
+
+/* Sweep shimmer on hover */
+.project::after, .certification::after, .skill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 40%, rgba(0,255,255,0.05) 60%, transparent 80%);
+  transform: translateX(-100%);
+  transition: transform 0.55s ease;
+}
+
+.project:hover::after,
+.certification:hover::after,
+.skill:hover::after { transform: translateX(100%); }
+
+.project:hover,
+.certification:hover,
+.skill:hover {
+  transform: translateY(-6px) scale(1.015);
+  box-shadow: 0 6px 30px rgba(0,255,255,0.22), 0 0 0 1px rgba(0,255,255,0.25);
+  border-color: rgba(0,255,255,0.55);
+  background: rgba(0,255,255,0.04);
+}
+
+.project:hover::before,
+.certification:hover::before,
+.skill:hover::before { opacity: 0.65; }
+
+.project h3, .certification h3, .skill h3 {
+  font-size: 18px;
+  color: var(--cyan);
+  text-shadow: 0 0 8px rgba(0,255,255,0.4);
+  margin-bottom: 10px;
+}
+
+.project p, .certification p, .skill p {
+  font-size: 15px;
+  color: rgba(0,255,255,0.75);
+  line-height: 1.6;
+  margin: 5px 0;
+}
+
+.project .tech, .certification .provider, .skill .proficiency {
+  color: var(--green);
+  font-size: 14px;
+  margin-top: 10px;
+  font-weight: bold;
+  letter-spacing: 0.04em;
+}
+
+.project .status, .certification .status {
+  color: var(--amber);
+  font-size: 14px;
+}
+
+/* ── Forms ── */
+input, textarea, button {
+  background: rgba(0,0,0,0.6);
+  color: var(--cyan);
+  border: 1px solid var(--border);
+  padding: 9px 14px;
+  font-family: inherit;
+  font-size: 16px;
+  border-radius: 3px;
+  transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+  margin-top: 6px;
+}
+
+input:focus, textarea:focus {
+  outline: none;
+  border-color: var(--cyan);
+  box-shadow: 0 0 12px rgba(0,255,255,0.25);
+  background: rgba(0,255,255,0.04);
+}
+
+button {
+  cursor: pointer;
+  letter-spacing: 0.06em;
+  transition: background 0.25s, color 0.25s, box-shadow 0.25s, transform 0.18s cubic-bezier(.34,1.56,.64,1);
+}
+button:hover {
+  background: var(--cyan);
+  color: #000;
+  box-shadow: 0 0 18px rgba(0,255,255,0.5);
+  transform: translateY(-2px);
+}
+
+/* ── Headings ── */
+h2 {
+  color: var(--cyan);
+  font-size: 22px;
+  text-shadow: 0 0 12px rgba(0,255,255,0.3);
+  margin-bottom: 4px;
+  letter-spacing: 0.04em;
+}
+h3 {
+  color: var(--cyan);
+  font-size: 18px;
+  text-shadow: 0 0 8px rgba(0,255,255,0.25);
+  margin: 18px 0 6px;
+}
+
+p { line-height: 1.65; color: rgba(0,255,255,0.82); }
+
+strong { color: var(--cyan); }
+
+/* ── About page info boxes ── */
+.terminal > div[style] {
+  backdrop-filter: blur(4px);
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  .terminal { padding: 16px 14px; width: 97%; }
+  nav a { font-size: 13px; padding: 4px 9px; }
+  .projects-list, .certifications-list, .skills-list {
+    grid-template-columns: 1fr;
+  }
+}
